@@ -187,7 +187,8 @@ public class engine {
 		if (puntuacionFinal < 0) {
 			this.puntuacionFinal = 0;
 		}
-		System.out.println("Tu puntuación es " + puntuacionFinal);
+		jugador puntaje = new jugador(null, puntuacionFinal);
+		puntaje.mostrarjugador();
 	}
 
 	/**
@@ -203,6 +204,10 @@ public class engine {
 		System.out.println("3: Empezar a jugar modo dificil");
 		System.out.println();
 		System.out.println("4: Puntuación");
+		System.out.println();
+		System.out.println("5: Mostrar jugadores");
+		System.out.println();
+		System.out.println("6: Mostrar mejores jugadores");
 	}
 
 	/**
@@ -215,9 +220,14 @@ public class engine {
 		System.out.println("Welcome to Simon dice!");
 
 		System.out.println("Introduzca su nombre");
-		jugador name = new jugador(nombre.nextLine());
+		jugador name = new jugador(nombre.nextLine(), 0);
+		
+		Record record = new Record();
+		record.agregarJugador(name);
 
-		System.out.println(name.getNombre());
+		System.out.print("Bienvenido ");
+		System.out.print(name.getNombre());
+		System.out.print(", Buena suerte");
 		System.out.println();
 		int n = 0;
 
@@ -238,7 +248,11 @@ public class engine {
 				this.dificultad = 2;
 			} else if (menu == 4) {
 				puntuacion();
-			} else if (menu != 1 || menu != 2 || menu != 3 || menu != 4) {
+			}else if (menu == 5) {
+				record.mostrarRanking();
+			}else if (menu == 6) {
+				record.mostrarMejoresRanking();
+			} else if (menu != 1 || menu != 2 || menu != 3 || menu != 4 || menu != 5 || menu != 6) {
 				System.out.println("Opción no válida");
 				System.out.println();
 			}

@@ -11,29 +11,53 @@ public class jugador {
 
 	private String nombre;
 	public int puntuacion;
-	
+
 	/**
 	 * Este metodo devuelve el nombre del jugador
+	 * 
 	 * @return
 	 */
 	public String getNombre() {
-		return "Bienvenido " + this.nombre + ", Buena suerte";
+		return this.nombre;
 	}
-	
+
 	/**
-	 * Este metodo registra la puntuación del jugador
+	 * Este metodo registra la puntuación
+	 * 
 	 * @return
 	 */
 	public int getPuntuacion() {
-		this.puntuacion = 0;
 		return this.puntuacion;
 	}
 	
+	public void setPuntuacion(int puntuacion) {
+		this.puntuacion = puntuacion;
+	}
+
 	/**
 	 * Este metodo registra el nombre del jugador
 	 * @param nombre
 	 */
 	public jugador(String nombre) {
 		this.nombre = nombre;
+		this.puntuacion = 0;
+	}
+
+	/**
+	 * Este metodo registra la puntuación del jugador
+	 * 
+	 * @param nombre
+	 */
+
+	public jugador(String nombre, int puntuacion) {
+		this.nombre = nombre;
+		this.puntuacion = puntuacion;
+	}
+
+	/**
+	 * Este metodo devuelve y muestra la información del jugador
+	 */
+	public void mostrarjugador() {
+		System.out.println("Tu puntuación es de " + this.puntuacion);
 	}
 }
