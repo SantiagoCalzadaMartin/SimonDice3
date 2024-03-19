@@ -1,5 +1,6 @@
 package main;
 
+import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -16,9 +17,11 @@ public class engine {
 		Rojo, Verde, Azul, Dorado, Blanco, Marron, Naranja
 	}
 
+	public Scanner nombre;
 	public int dificultad;
 	public int puntuacion;
 	public int puntuacionFinal;
+	public int puntuacionJugador;
 	public int ayuda;
 	static int MAX_COLORES_SEC = 15;
 	static int MAX_COLORES_FACIL = 4;
@@ -212,21 +215,25 @@ public class engine {
 
 	/**
 	 * Este metodo es el que se ejecuta primero al iniciar el juego
+	 * @throws IOException 
 	 */
-	public void start() {
-		Scanner nombre = new Scanner(System.in);
+	public void start() throws IOException {
+		Record record = new Record();
+		
+		record.cargarRanking();
+		
+		nombre = new Scanner(System.in);
 
 		System.out.println();
 		System.out.println("Welcome to Simon dice!");
 
 		System.out.println("Introduzca su nombre");
-		jugador name = new jugador(nombre.nextLine(), 0);
-		
-		Record record = new Record();
+		String nombreJugador = nombre.nextLine();
+		jugador name = new jugador(nombreJugador, puntuacionFinal);
 		record.agregarJugador(name);
 
 		System.out.print("Bienvenido ");
-		System.out.print(name.getNombre());
+		System.out.print(nombreJugador);
 		System.out.print(", Buena suerte");
 		System.out.println();
 		int n = 0;
@@ -240,12 +247,20 @@ public class engine {
 				n = 1;
 			} else if (menu == 2) {
 				generarSecuencia(MAX_COLORES_FACIL);
-				play(tModo.Facil);
 				this.dificultad = 1;
+				play(tModo.Facil);
+				System.out.println("Has sacado " + puntuacionFinal + " puntos");
+				if(puntuacionFinal > name.getPuntuacion()) {
+					name.setPuntuacion(puntuacionFinal);
+				}
 			} else if (menu == 3) {
 				generarSecuencia(MAX_COLORES_DIFICIL);
-				play(tModo.Dificil);
 				this.dificultad = 2;
+				play(tModo.Dificil);
+				System.out.println("Has sacado " + puntuacionFinal + " puntos");
+				if(puntuacionFinal > name.getPuntuacion()) {
+					name.setPuntuacion(puntuacionFinal);
+				}
 			} else if (menu == 4) {
 				puntuacion();
 			}else if (menu == 5) {

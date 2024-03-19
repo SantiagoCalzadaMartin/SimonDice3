@@ -23,7 +23,6 @@ public class jugador {
 
 	/**
 	 * Este metodo registra la puntuación
-	 * 
 	 * @return
 	 */
 	public int getPuntuacion() {
@@ -35,20 +34,10 @@ public class jugador {
 	}
 
 	/**
-	 * Este metodo registra el nombre del jugador
-	 * @param nombre
-	 */
-	public jugador(String nombre) {
-		this.nombre = nombre;
-		this.puntuacion = 0;
-	}
-
-	/**
 	 * Este metodo registra la puntuación del jugador
 	 * 
 	 * @param nombre
 	 */
-
 	public jugador(String nombre, int puntuacion) {
 		this.nombre = nombre;
 		this.puntuacion = puntuacion;
